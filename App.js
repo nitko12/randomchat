@@ -1,19 +1,34 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { View, Text, Vibration, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-export default function App() {
+import Login from "./screens/Login";
+import Signin from "./screens/Signin";
+import Contacts from "./screens/Contacts";
+import Loading from "./screens/Loading";
+import AddNewChat from "./screens/AddNewChat";
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Loading" component={Loading} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signin" component={Signin} />
+          <Stack.Screen name="Contacts" component={Contacts} />
+          <Stack.Screen name="AddNewChat" component={AddNewChat} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
